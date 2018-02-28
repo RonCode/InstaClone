@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'haml'
 gem "haml-rails", "~> 1.0"
-
+gem "paperclip", "~> 5.2.1"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
