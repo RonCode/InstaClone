@@ -8,8 +8,11 @@
     %p.caption
       =@post.caption
     .text-center
-      =link_to "Cancel", posts_path
-      |
-      =link_to "Edit", edit_post_path
-      |
-      =link_to "Delete", post_path(@post), method: :delete, data: {confirm: "You sure?"}
+      -if @post.user.id == current_user.id
+        =link_to "Cancel", posts_path
+        |
+        =link_to "Edit", edit_post_path
+        |
+        =link_to "Delete", post_path(@post), method: :delete, data: {confirm: "You sure?"}
+      -else 
+        =link_to "Cancel", posts_path
