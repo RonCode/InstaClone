@@ -1,0 +1,4 @@
+<!--Adding our newly added comment to the list of comments.-->
+$('#comments_<%= @post.id %>').append("<%=j render 'comments/comment', post: @post, comment: @comment %>");
+<!--Clearing out the form that we just typed in.-->
+$('#comment_content_<%= @post.id %>').val('')

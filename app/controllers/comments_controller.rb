@@ -7,10 +7,13 @@ class CommentsController < ApplicationController
     #and then assign it the user_name field based on the user currently logged in
     @comment.user_id = current_user.id 
     if @comment.save
-      flash[:success] = 'Comment posted!'
-      redirect_to @post
+      #for ajax
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js
+      end
     else
-      flash.now[:danger] = "Error, comment not posted."
+      flash.now[:alert] = "Error, comment not posted."
       render root_path
     end
   end
@@ -18,10 +21,16 @@ class CommentsController < ApplicationController
   def destroy
     @comment = @post.comments.find(params[:id])
     
-    @comment.destroy
-    flash[:success] = "Comment deleted :("
-    redirect_to root_path
+    if @comment.user_id == current_user.id
+      @comment.delete
+      #for ajax
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js
+      end
+    end
   end
+
   
   private
     def comment_params

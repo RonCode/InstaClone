@@ -1,0 +1,2 @@
+<!--simply appending our updated comments list to the comment div-->
+$('#comments_<%= @post.id %>').html("<%= j render @post.comments, post: @post, comment: @comment %>");
