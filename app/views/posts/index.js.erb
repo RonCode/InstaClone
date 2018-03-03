@@ -1,0 +1,6 @@
+<!--append the #posts div with the new _posts.html.haml partial, ie. we add it on the bottom.-->
+$('#posts').append("<%= escape_javascript(render 'posts')%>");
+<!--select the #paginator div and set it’s contents to our link_to_next_page kaminari helper method-->
+$('#paginator').html("<%= escape_javascript(link_to_next_page(@posts, 'LOAD MORE', remote: true, id: 'load_more'))%>");
+<!--remove the #paginator div if the #load_more element (our link) doesn’t exist-->
+if (!$('#load_more').length) { $('#paginator').remove(); }
